@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ListBox x:Name="myListBox" HorizontalContentAlignment="Stretch" Margin="0,0,604,0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="FirstName"/>
+                                <Binding Path="LastName"/>
+                                <Binding Path="Age"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBox Width="565" Margin="225,10,0,306" IsEnabled="False" HorizontalAlignment="Left">
+            <TextBox.Text>
+                <MultiBinding StringFormat="{}{0} {1} {2} ans">
+                    <Binding ElementName="myListBox" Path="SelectedItem.FirstName"/>
+                    <Binding ElementName="myListBox" Path="SelectedItem.LastName"/>
+                    <Binding ElementName="myListBox" Path="SelectedItem.Age"/>
+                </MultiBinding>
+            </TextBox.Text>
+        </TextBox>
+    </Grid>
+</Window>
